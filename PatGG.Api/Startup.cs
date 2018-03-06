@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using PatGG.Core.Entities;
+using PatGG.Core.Repositories;
 
-namespace PatGG
+namespace PatGG.Api
 {
     public class Startup
     {
@@ -15,6 +13,10 @@ namespace PatGG
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services
+                .AddRouting()
+                .AddMvc();
+            services.AddTransient<IItemRepository<IItem>, MockItemRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -25,9 +27,15 @@ namespace PatGG
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
+            app.UseMvc(routes =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                routes.MapRoute(
+                    name: "api",
+                    template: "api/{controller}/{action=Get}/{id?}"
+                );
             });
         }
     }

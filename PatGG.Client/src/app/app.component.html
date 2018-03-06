@@ -1,0 +1,37 @@
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side">
+    <mat-list>
+      <mat-list-item active>
+          <button mat-icon-button>
+              <mat-icon mat-list-icon>assignment_returned</mat-icon>
+          </button>
+          <h4>
+              <a href="#">Nye erklæringer</a>
+          </h4>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon aria-label="Menu" aria-hidden="true">menu</mat-icon>
+        </button>
+          <span>PatGG - Backoffice</span>
+          <span class="spacer"></span>
+          <mat-icon class="example-icon">favorite</mat-icon>
+          <mat-icon class="example-icon">delete</mat-icon>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-progress-bar mode="indeterminate" *ngIf="false"></mat-progress-bar>
+    <div class="dashboard-content">
+        <div>
+          <mat-card>
+            <mat-card-title>PatGG is running</mat-card-title>
+            <mat-card-subtitle>Neat AF</mat-card-subtitle>
+          </mat-card>
+        </div>
+    </div>
+</mat-sidenav-content>
+</mat-sidenav-container>

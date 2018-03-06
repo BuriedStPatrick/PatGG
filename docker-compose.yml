@@ -5,4 +5,4 @@ services:
     image: patgg
     build:
       context: .
-      dockerfile: PatGG/Dockerfile
+      dockerfile: PatGG.Api/Dockerfile
